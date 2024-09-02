@@ -1,0 +1,4 @@
+pandas
+openai
+pdfrw
+python-dotenv
