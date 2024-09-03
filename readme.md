@@ -2,7 +2,9 @@
 
 ## Einführung
 
-Diese Software erstellt synthetische Daten für den Überleitbogen des Medizinischen Dienstes zur Schnelleinstufung zwecks Pflegegrad. Die Software erzeugt aus 10 oder mehr Datensätzen in einer CSV-Tabelle mit Hilfe von ChatGPT neue Datensätze, die sich aus dem Muster der vorhandenen generieren. Mit einem zweiten Code können diese Datensätze dann aus der neuen CSV-Datei automatisch in eine PDF eingefügt werden. Dies ermöglicht die Erzeugung einer gewünschten Anzahl an PDF-Dateien mit fiktiven Daten. Der Zweck dieser Software ist es, datenschutzrechtlich problematische Daten zu vermeiden, wenn man Machine Learning-Modelle mit diesen Daten trainieren möchte.
+Diese Software erstellt synthetische Daten für den Überleitungsantrag des Medizinischen Dienstes zur Schnelleinstufung zwecks Pflegegrad. Die Software erzeugt aus 10 oder mehr Datensätzen in einer CSV-Tabelle mit Hilfe von ChatGPT neue Datensätze, die sich aus dem Muster der vorhandenen generieren. Mit einem zweiten Code können diese Datensätze dann aus der neuen CSV-Datei automatisch in eine PDF eingefügt werden. Dies ermöglicht die Erzeugung einer gewünschten Anzahl an PDF-Dateien mit fiktiven Daten. Der Zweck dieser Software ist es, datenschutzrechtlich problematische Daten zu vermeiden, wenn man Machine Learning-Modelle mit diesen Daten trainieren möchte.
+
+**Hinweis** Alle hier verwendeten Daten sind frei erfunden. Jede Ähnlichkeit mit lebenden oder verstorbenen Personen sind rein zufällig.
 
 ## Data Augmentation
 
@@ -10,7 +12,7 @@ Data Augmentation ist ein legitimer Ansatz, um Machine Learning zu ermöglichen.
 
 ## Voraussetzungen
 
-- Python 3.6 oder höher
+- Python 3.10 oder höher
 - `pandas` Bibliothek
 - `pdfrw` Bibliothek
 - OpenAI API Schlüssel
@@ -47,6 +49,7 @@ Data Augmentation ist ein legitimer Ansatz, um Machine Learning zu ermöglichen.
 1. Stelle sicher, dass die Vorlage `Antrag_ueberleitung.pdf` im Ordner `pdf` vorhanden ist.
 2. Führe das Jupyter-Notebook `uberleitung_pdf_creator.ipynb` aus, um die PDF-Dateien zu erstellen.
 3. Die erstellten PDF-Dateien werden im Ordner `output` gespeichert.
+4. Zusätzlich wird eine Tabelle (csv-Datei) erstellt, die den Formularen (Dateinamen) das Ergebnis zuordnet.
 
 ## Erklärvideo
 
