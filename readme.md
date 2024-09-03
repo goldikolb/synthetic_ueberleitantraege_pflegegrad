@@ -1,8 +1,8 @@
-# Überleitbogen-Synthese-Software
+# Code zur Erstellung von synthetischen Daten Überleitungsanträge des Medizinischen Dienst
 
 ## Einführung
 
-Diese Software erstellt synthetische Daten für den Überleitungsantrag des Medizinischen Dienstes zur Schnelleinstufung zwecks Pflegegrad. Die Software erzeugt aus 10 oder mehr Datensätzen in einer CSV-Tabelle mit Hilfe von ChatGPT neue Datensätze, die sich aus dem Muster der vorhandenen generieren. Mit einem zweiten Code können diese Datensätze dann aus der neuen CSV-Datei automatisch in eine PDF eingefügt werden. Dies ermöglicht die Erzeugung einer gewünschten Anzahl an PDF-Dateien mit fiktiven Daten. Der Zweck dieser Software ist es, datenschutzrechtlich problematische Daten zu vermeiden, wenn man Machine Learning-Modelle mit diesen Daten trainieren möchte.
+Diese Notebooks helfen bei der Erstellung synthetischer Daten für den Überleitungsantrag des Medizinischen Dienstes zur Schnelleinstufung zwecks Pflegegrad. Die Software erzeugt aus 10 oder mehr Datensätzen in einer CSV-Tabelle mit Hilfe von ChatGPT neue Datensätze, die sich aus dem Muster der vorhandenen generieren. Nach der Überarbeitung dieser neuen Daten lassen sich diese mit einem zweiten Code dann aus der neuen CSV-Datei automatisch in eine PDF einfügen. Dies ermöglicht eine schnelle Erzeugung einer gewünschten Anzahl an PDF-Dateien mit fiktiven Daten. Der Zweck dieser Software ist es, datenschutzrechtlich problematische Daten zu vermeiden, wenn man Machine Learning-Modelle oder Sprachmodelle mit diesen Daten trainieren möchte.
 
 **Hinweis** Alle hier verwendeten Daten sind frei erfunden. Jede Ähnlichkeit mit lebenden oder verstorbenen Personen sind rein zufällig.
 
