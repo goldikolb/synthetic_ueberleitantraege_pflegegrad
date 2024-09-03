@@ -46,11 +46,9 @@ Data Augmentation ist ein legitimer Ansatz, um Machine Learning zu ermöglichen.
 
 ### Erstellen der neuen Gutachten
 
-Bisher erzeugt die Datei synthetic_data_creator relativ zuverlässig neue Datenreihen. Diese müssen aber erst noch in eine Tablle übertragen und überprüft werden. Vor allem die Diagnosen sind noch sehr redundant und er immer nur mit einer neuen Diagnose gefüllt. Für die händische Bearbeitung in einer Tabelle. Empfehle ich über die Methode des few-shot-prompting einfach eine neue Reihe von Kombination neuer Diagnosen zu erzeugen. In gpt-4o funktioniert das einwandfrei. Füge nach folgenden Prompt, die Spalte mit den Pflegediagnosen ein und man bekommt adäquate pflegerelevante Diagnosen.
+Bisher erzeugt die Datei synthetic_data_creator relativ zuverlässig neue Datenreihen. Diese müssen aber erst noch in eine Tablle übertragen und überprüft werden. Vor allem die Diagnosen sind noch sehr redundant und er immer nur mit einer neuen Diagnose gefüllt. Für die händische Bearbeitung in einer Tabelle. Empfehle ich über die Methode des few-shot-prompting einfach eine neue Reihe von Kombination neuer Diagnosen zu erzeugen. In gpt-4o funktioniert das einwandfrei. Füge folgenden Prompt und die Spalte mit den Pflegediagnosen ein und man bekommt adäquate pflegerelevante Diagnosen.
 
-```bash
-    Du bist Experte für Data Engineering in der Medizin, ich gebe dir eine Reihe von Diagnosen, jede Reihe ist ein Patient, bitte erzeuge weitere 10 Reihen an Diagnosen, die Auswirkungen haben auf AEDLs:
-    ```
+**Du bist Experte für Data Engineering in der Medizin, ich gebe dir eine Reihe von Diagnosen, jede Reihe ist ein Patient, bitte erzeuge weitere 10 Reihen an Diagnosen, die Auswirkungen haben auf AEDLs:**
 
 ### Erstellen von PDF-Dateien
 
