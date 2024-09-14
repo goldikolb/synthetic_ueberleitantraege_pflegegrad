@@ -1,4 +1,5 @@
 pandas
-openai
 pdfrw
 python-dotenv
+sdv
+faker

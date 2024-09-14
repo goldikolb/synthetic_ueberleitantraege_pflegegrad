@@ -1,69 +1,93 @@
-# Code zur Erstellung von synthetischen Daten Überleitungsanträge des Medizinischen Dienst
+# Code zur Erstellung von synthetischen Überleitungsanträgen des Medizinischen Dienstes
 
 ## Einführung
 
-Diese Notebooks helfen bei der Erstellung synthetischer Daten für den Überleitungsantrag des Medizinischen Dienstes zur Schnelleinstufung zwecks Pflegegrad. Die Software erzeugt aus 10 oder mehr Datensätzen in einer CSV-Tabelle mit Hilfe von ChatGPT neue Datensätze, die sich aus dem Muster der vorhandenen generieren. Nach der Überarbeitung dieser neuen Daten lassen sich diese mit einem zweiten Code dann aus der neuen CSV-Datei automatisch in eine PDF einfügen. Dies ermöglicht eine schnelle Erzeugung einer gewünschten Anzahl an PDF-Dateien mit fiktiven Daten. Der Zweck dieser Software ist es, datenschutzrechtlich problematische Daten zu vermeiden, wenn man Machine Learning-Modelle oder Sprachmodelle mit diesen Daten trainieren möchte.
+Diese Notebooks helfen bei der Erstellung synthetischer Daten für den Überleitungsantrag des Medizinischen Dienstes zur Schnelleinstufung zwecks Pflegegrad. Die Software erzeugt aus vorhandenen Datensätzen in einer CSV-Tabelle neue synthetische Datensätze, die auf dem Muster der vorhandenen Daten basieren. Nach der Generierung dieser neuen Daten lassen sich diese mit einem zweiten Code automatisch aus der neuen CSV-Datei in eine PDF einfügen. Dies ermöglicht eine schnelle Erzeugung einer gewünschten Anzahl an PDF-Dateien mit fiktiven Daten. Der Zweck dieser Software ist es, datenschutzrechtlich problematische Daten zu vermeiden, wenn man Machine-Learning-Modelle oder Sprachmodelle mit diesen Daten trainieren möchte.
 
-**Hinweis** Alle hier verwendeten Daten sind frei erfunden. Jede Ähnlichkeit mit lebenden oder verstorbenen Personen sind rein zufällig.
+**Hinweis:** Alle hier verwendeten Daten sind frei erfunden. Jede Ähnlichkeit mit lebenden oder verstorbenen Personen ist rein zufällig.
 
 ## Data Augmentation
 
-Data Augmentation ist ein legitimer Ansatz, um Machine Learning zu ermöglichen. Durch die Generierung synthetischer Daten können Datensätze erweitert werden, ohne auf reale und möglicherweise datenschutzrechtlich problematische Informationen zurückzugreifen. Dies ist besonders wichtig im medizinischen Bereich, wo der Schutz persönlicher Daten oberste Priorität hat. Mit synthetischen Daten können Machine Learning-Modelle trainiert und validiert werden, ohne dass echte Patientendaten verwendet werden müssen.
+Data Augmentation ist ein legitimer Ansatz, um Machine Learning zu ermöglichen. Durch die Generierung synthetischer Daten können Datensätze erweitert werden, ohne auf reale und möglicherweise datenschutzrechtlich problematische Informationen zurückzugreifen. Dies ist besonders wichtig im medizinischen Bereich, wo der Schutz persönlicher Daten oberste Priorität hat. Mit synthetischen Daten können Machine-Learning-Modelle trainiert und validiert werden, ohne dass echte Patientendaten verwendet werden müssen.
 
 ## Voraussetzungen
 
 - Python 3.10 oder höher
 - `pandas` Bibliothek
 - `pdfrw` Bibliothek
-- OpenAI API Schlüssel
+- `faker` Bibliothek
+- `sdv` Bibliothek
+- `numpy` und `scikit-learn` Bibliotheken (werden als Abhängigkeiten benötigt)
 
 ## Installation
 
-1. Klone dieses Repository:
+1. **Klone dieses Repository:**
+
     ```bash
     git clone https://github.com/goldikolb/synthetische_ueberleitungsantraege.git
     cd uberleitbogen-synthese
     ```
 
-2. Installiere die benötigten Python-Pakete:
+2. **Installiere die benötigten Python-Pakete:**
+
     ```bash
-    pip install pandas pdfrw python-dotenv openai
+    pip install pandas pdfrw faker sdv
     ```
 
-3. Setze deinen OpenAI API Schlüssel in der `.env` Datei:
-    ```env
-    OPENAI_API_KEY=dein_openai_api_schluessel
-    ```
+    **Hinweis:** Falls bei der Installation von `sdv` Probleme auftreten oder zusätzliche Pakete benötigt werden, installiere diese wie folgt:
+
+```bash
+pip install numpy scikit-learn
+```
+
+3. **Stelle sicher, dass alle Pakete erfolgreich installiert wurden.**
 
 ## Verwendung
 
 ### Generieren synthetischer Daten
 
-1. Lade die CSV-Datei mit den vorhandenen Daten in den Ordner `csv_data`.
-2. Ändere den `file_path` im Jupyter-Notebook `synthetic_data_creator.ipynb` entsprechend.
-3. Führe das Notebook aus, um neue synthetische Daten zu generieren.
-4. Die neuen Datensätze werden in der Datei `erweiterte_daten_10.csv` gespeichert.
+1. **Lade die CSV-Datei mit den vorhandenen Daten in den Ordner `csv_data`.** Achte darauf, dass die Datei korrekt formatiert ist und die benötigten Spalten enthält.
+
+2. **Passe den `file_path` im Jupyter-Notebook `synthetic_data_creator.ipynb` an**, um auf deine CSV-Datei zu verweisen.
+
+3. **Führe das Notebook aus**, um neue synthetische Daten zu generieren. Das Notebook verwendet die Bibliotheken `faker` und `sdv`, um realistische synthetische Datensätze zu erstellen, die auf den Mustern der vorhandenen Daten basieren.
+
+4. **Die neuen Datensätze werden in der Datei `erweiterte_daten.csv` gespeichert.**
 
 ### Erstellen der neuen Gutachten
 
-Bisher erzeugt die Datei synthetic_data_creator relativ zuverlässig neue Datenreihen. Diese müssen aber erst noch in eine Tablle übertragen und überprüft werden. Vor allem die Diagnosen sind noch sehr redundant und er immer nur mit einer neuen Diagnose gefüllt. Für die händische Bearbeitung in einer Tabelle. Empfehle ich über die Methode des few-shot-prompting einfach eine neue Reihe von Kombination neuer Diagnosen zu erzeugen. In gpt-4o funktioniert das einwandfrei. Füge folgenden Prompt und die Spalte mit den Pflegediagnosen ein und man bekommt adäquate pflegerelevante Diagnosen.
+Die generierten synthetischen Daten können direkt verwendet oder bei Bedarf angepasst werden. Überprüfe die Daten, um sicherzustellen, dass sie den Anforderungen entsprechen. Insbesondere können die Diagnosen angepasst oder erweitert werden, um mehr Vielfalt zu bieten.
 
-**Du bist Experte für Data Engineering in der Medizin, ich gebe dir eine Reihe von Diagnosen, jede Reihe ist ein Patient, bitte erzeuge weitere 10 Reihen an Diagnosen, die Auswirkungen haben auf AEDLs:**
+Falls du zusätzliche Diagnosen generieren möchtest, kannst du die `faker` Bibliothek erweitern oder eigene Listen von Diagnosen erstellen und in den Code integrieren.
+
+**Beispiel für die Erweiterung der Diagnosen:**
+
+Du kannst im Code die Liste der möglichen Diagnosen erweitern:
+
+```python
+pflege_diagnosen = [
+    'Demenz', 'Schlaganfall', 'Fraktur', 'Herzinsuffizienz',
+    'COPD', 'Parkinson', 'Multiple Sklerose', 'Arthrose',
+    'Depression', 'Diabetes mellitus', 'Hypertonie', 'Chronische Schmerzen'
+]
+```
 
 ### Erstellen von PDF-Dateien
 
-1. Stelle sicher, dass die Vorlage `Antrag_ueberleitung.pdf` im Ordner `pdf` vorhanden ist.
-2. Führe das Jupyter-Notebook `uberleitung_pdf_creator.ipynb` aus, um die PDF-Dateien zu erstellen.
-3. Die erstellten PDF-Dateien werden im Ordner `output` gespeichert.
-4. Zusätzlich wird eine Tabelle (csv-Datei) erstellt, die den Formularen (Dateinamen) das Ergebnis zuordnet.
+1. **Stelle sicher, dass die Vorlage `Antrag_ueberleitung.pdf` im Ordner `pdf` vorhanden ist.**
+
+2. **Führe das Jupyter-Notebook `uberleitung_pdf_creator.ipynb` aus**, um die PDF-Dateien zu erstellen. Das Notebook liest die synthetischen Daten aus der CSV-Datei und füllt die PDF-Vorlage entsprechend aus.
+
+3. **Die erstellten PDF-Dateien werden im Ordner `output` gespeichert.**
+
+4. **Zusätzlich wird eine Tabelle (CSV-Datei) erstellt**, die den Formularen (Dateinamen) das Ergebnis zuordnet.
 
 ## Erklärvideo
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=L3S8_Gj5t0M" target="_blank">
- <img src="http://img.youtube.com/vi/L3S8_Gj5t0M/mqdefault.jpg" alt="Watch the video" width="240" height="180" border="10" />
-</a>
+[![Watch the video](http://img.youtube.com/vi/L3S8_Gj5t0M/mqdefault.jpg)](http://www.youtube.com/watch?feature=player_embedded&v=L3S8_Gj5t0M)
 
 ## Autor
+
 Christian Kolb
 
 ## Kontakt
@@ -72,10 +96,26 @@ Wenn Sie Fragen haben oder einen Beitrag leisten möchten, zögern Sie nicht, un
 
 [![Website](https://img.shields.io/badge/Pflege--AI-Webseite-%230f0122?style=flat&logo=Web&logoColor=ff8154)](https://pflege-ai.de/)
 
-## Follow me on Social Media
+## Folgen Sie mir auf Social Media
 
 [![Threads](https://img.shields.io/badge/Threads-Follow%20me-blue?style=flat&logo=Thread&logoColor=white)](https://www.threads.net/@pflege_ki)
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/ai_fuerth?style=social)](https://twitter.com/ai_fuerth)
 
 [![Instagram](https://img.shields.io/badge/Instagram-Follow%20@pflege__ki-blue?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/pflege_ki/)
+
+---
+
+### **Zusätzliche Hinweise**
+
+- **Anpassung des Codes:** Stelle sicher, dass alle Pfade und Dateinamen im Code korrekt auf deine lokale Umgebung angepasst sind.
+
+- **Überprüfung der Daten:** Nach der Generierung der synthetischen Daten ist es empfehlenswert, die Daten zu überprüfen und gegebenenfalls anzupassen, um sicherzustellen, dass sie den realistischen Szenarien entsprechen.
+
+- **Erweiterung der Funktionen:** Du kannst den Code weiter anpassen und erweitern, um zusätzliche Features hinzuzufügen, wie z.B. die Generierung spezifischer Diagnosen oder die Anpassung der Hilfebedarfsstufen.
+
+### **Hinweis zur Verwendung von SDV**
+
+- **PII-Erkennung:** Beachte, dass SDV standardmäßig personenbezogene Daten (PII) erkennen und anonymisieren kann. In unserem Code haben wir die PII-Erkennung für bestimmte Spalten deaktiviert, um realistische Namen und Diagnosen zu generieren. Stelle sicher, dass du keine echten personenbezogenen Daten in deinem Originaldatensatz verwendest.
+
+- **Dokumentation:** Weitere Informationen zur Verwendung von SDV und zur Anpassung der Metadaten findest du in der offiziellen [SDV-Dokumentation](https://sdv.dev/SDV/index.html).
