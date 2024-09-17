@@ -3,3 +3,5 @@ pdfrw
 python-dotenv
 sdv
 faker
+scikit-learn
+numpy

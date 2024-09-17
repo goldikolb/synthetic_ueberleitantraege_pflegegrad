@@ -15,7 +15,6 @@ Data Augmentation ist ein legitimer Ansatz, um Machine Learning zu ermöglichen.
 - Python 3.10 oder höher
 - `pandas` Bibliothek
 - `pdfrw` Bibliothek
-- `faker` Bibliothek
 - `sdv` Bibliothek
 - `numpy` und `scikit-learn` Bibliotheken (werden als Abhängigkeiten benötigt)
 
@@ -31,14 +30,14 @@ Data Augmentation ist ein legitimer Ansatz, um Machine Learning zu ermöglichen.
 2. **Installiere die benötigten Python-Pakete:**
 
     ```bash
-    pip install pandas pdfrw faker sdv
+    pip install pandas pdfrw sdv
     ```
 
     **Hinweis:** Falls bei der Installation von `sdv` Probleme auftreten oder zusätzliche Pakete benötigt werden, installiere diese wie folgt:
 
-```bash
-pip install numpy scikit-learn
-```
+    ```bash
+    pip install numpy scikit-learn
+    ```
 
 3. **Stelle sicher, dass alle Pakete erfolgreich installiert wurden.**
 
@@ -50,7 +49,7 @@ pip install numpy scikit-learn
 
 2. **Passe den `file_path` im Jupyter-Notebook `synthetic_data_creator.ipynb` an**, um auf deine CSV-Datei zu verweisen.
 
-3. **Führe das Notebook aus**, um neue synthetische Daten zu generieren. Das Notebook verwendet die Bibliotheken `faker` und `sdv`, um realistische synthetische Datensätze zu erstellen, die auf den Mustern der vorhandenen Daten basieren.
+3. **Führe das Notebook aus**, um neue synthetische Daten zu generieren. Das Notebook verwendet die Bibliothek `sdv`, um realistische synthetische Datensätze zu erstellen, die auf den Mustern der vorhandenen Daten basieren.
 
 4. **Die neuen Datensätze werden in der Datei `erweiterte_daten.csv` gespeichert.**
 
@@ -58,7 +57,7 @@ pip install numpy scikit-learn
 
 Die generierten synthetischen Daten können direkt verwendet oder bei Bedarf angepasst werden. Überprüfe die Daten, um sicherzustellen, dass sie den Anforderungen entsprechen. Insbesondere können die Diagnosen angepasst oder erweitert werden, um mehr Vielfalt zu bieten.
 
-Falls du zusätzliche Diagnosen generieren möchtest, kannst du die `faker` Bibliothek erweitern oder eigene Listen von Diagnosen erstellen und in den Code integrieren.
+Falls du zusätzliche Diagnosen generieren möchtest, kannst du eigene Listen von Diagnosen erstellen und in den Code integrieren.
 
 **Beispiel für die Erweiterung der Diagnosen:**
 
@@ -71,6 +70,31 @@ pflege_diagnosen = [
     'Depression', 'Diabetes mellitus', 'Hypertonie', 'Chronische Schmerzen'
 ]
 ```
+
+### Verwendung von Faker für mehr Vielfalt
+
+Wenn du die Daten noch diverser gestalten möchtest, kannst du die Bibliothek `faker` verwenden. Mit `faker` können realistische, aber fiktive Daten wie Namen, Adressen und Diagnosen generiert werden. Wer dies ausprobieren möchte, ist herzlich eingeladen, den Code entsprechend anzupassen und `faker` zu integrieren.
+
+**Installation von Faker:**
+
+```bash
+pip install faker
+```
+
+**Beispiel für die Verwendung von Faker:**
+
+```python
+from faker import Faker
+
+faker = Faker('de_DE')
+
+name = faker.last_name()
+vorname = faker.first_name()
+```
+
+### Anpassung der Daten mit Google Sheets
+
+Als Ergänzung steht [dieser Link](https://docs.google.com/spreadsheets/d/1gR2MUm7oCFlaN_tSfqTQ4XNbDn1cBkeQrPH5PdzrOH0/edit?usp=sharing) zu einer Google-Tabelle zur Verfügung. Dort findest du die Tabelle mit den ersten 15 synthetischen Datensätzen. Wenn du die neu generierten Datenreihen in diese Tabelle kopierst, kannst du die Daten mit den vorhandenen Dropdown-Menüs einfach anpassen. Es ist wichtig, die neu erzeugten Reihen hinsichtlich des Ergebnisses (letzte Variable) zu überprüfen. Die Qualität der Daten definiert letztendlich auch die Qualität des Ergebnisses des Machine-Learning-Prozesses oder jeder anderen Vorgehensweise.
 
 ### Erstellen von PDF-Dateien
 
@@ -110,7 +134,7 @@ Wenn Sie Fragen haben oder einen Beitrag leisten möchten, zögern Sie nicht, un
 
 - **Anpassung des Codes:** Stelle sicher, dass alle Pfade und Dateinamen im Code korrekt auf deine lokale Umgebung angepasst sind.
 
-- **Überprüfung der Daten:** Nach der Generierung der synthetischen Daten ist es empfehlenswert, die Daten zu überprüfen und gegebenenfalls anzupassen, um sicherzustellen, dass sie den realistischen Szenarien entsprechen.
+- **Überprüfung der Daten:** Nach der Generierung der synthetischen Daten ist es empfehlenswert, die Daten zu überprüfen und gegebenenfalls anzupassen, um sicherzustellen, dass sie realistischen Szenarien entsprechen.
 
 - **Erweiterung der Funktionen:** Du kannst den Code weiter anpassen und erweitern, um zusätzliche Features hinzuzufügen, wie z.B. die Generierung spezifischer Diagnosen oder die Anpassung der Hilfebedarfsstufen.
 
